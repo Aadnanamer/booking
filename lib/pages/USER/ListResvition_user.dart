@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../Controler/ReservedController.dart';
+import '../../Controler/ReservedControllerAdmin.dart';
 import '../../models/Res_details.dart';
 import '/models/Res_item.dart';
 import 'package:get/get.dart';
@@ -90,7 +91,8 @@ class _ListPageState extends State<ListPage> {
   ReservedController post=Get.put(ReservedController());
   @override
   void initState() {
-
+    print("initState");
+   // ReservedController post=Get.put(ReservedController());
     //  ReservedList = getLessons();
     // lodeSaveData();
     /*
@@ -111,9 +113,11 @@ class _ListPageState extends State<ListPage> {
 
     );
     */
-
+    ReservedControllerAdmin reservedController=Get.put(ReservedControllerAdmin());
+    reservedController.GetReserved("");
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {

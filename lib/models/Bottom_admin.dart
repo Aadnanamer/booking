@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../Controler/ReservedControllerAdmin.dart';
 import '../utils/constants.dart';
 import 'Reserved.dart';
 import 'package:art_sweetalert/art_sweetalert.dart';
@@ -52,7 +53,7 @@ class _boottom_userState extends State<boottom_admin> {
     Get.back();
   }
   Future Cancel() async {
-
+    ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
     //Login API URL
     //use your local IP address instead of localhost or use Web API
 
@@ -92,10 +93,10 @@ class _boottom_userState extends State<boottom_admin> {
 
       show("فشل ");
     }
-
+post.GetReserved("");
   }
   Future ACCEPT() async {
-
+    ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
     //Login API URL
     //use your local IP address instead of localhost or use Web API
 
@@ -136,7 +137,7 @@ class _boottom_userState extends State<boottom_admin> {
 
       show("فشل ");
     }
-
+    post.GetReserved("");
   }
   @override
   Widget build(BuildContext context) {

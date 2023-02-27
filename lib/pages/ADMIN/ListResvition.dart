@@ -1,4 +1,6 @@
 import 'dart:convert';
+import '../../Controler/ReservedController.dart';
+import '../../Controler/ReservedControllerAdmin.dart';
 import '../../models/Bottom_admin.dart';
 import '../../models/Res_item_admin.dart';
 import 'package:flutter_tab_indicator_styler/flutter_tab_indicator_styler.dart';
@@ -6,6 +8,8 @@ import 'package:flutter/material.dart';
 import '/models/Reserved.dart';
 import 'package:http/http.dart'as http;
 import '/utils/constants.dart';
+import 'package:get/get.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 class ListPage extends StatefulWidget {
   ListPage({required Key key, required this.title}) : super(key: key);
 
@@ -80,10 +84,8 @@ print("errorr");
   @override
   void initState() {
 
-    ReservedList = getLessons();
-    ReservedList1 = getLessons();
-    ReservedList2 = getLessons();
-    ReservedShow(Stat);
+    ReservedController reservedController=Get.put(ReservedController());
+    reservedController.GetReserved();
 
     super.initState();
   }
@@ -139,11 +141,9 @@ print("errorr");
     ),
       body: TabBarView(
         children: <Widget>[
-
-          ListTab("0"),
-          ListTab("1"),
-
-          ListTab("3"),
+          ListTabStateGETX( ),
+          _ListTabStateGETXState1( ),
+          _ListTabStateGETXState3( ),
         ]),
 
     ));
@@ -288,3 +288,197 @@ class _ListTabState extends State<ListTab> {
     ];
   }
 }
+
+
+class ListTabStateGETX extends StatefulWidget {
+
+
+
+  @override
+  State<ListTabStateGETX> createState() => _ListTabStateGETXState( );
+}
+
+class _ListTabStateGETXState extends State<ListTabStateGETX> {
+
+  late String stat;
+   
+  ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.only(top: 60),
+        // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
+        child:
+        Obx(()=>post.loder.value?Center(child: SpinKitThreeInOut(
+          color: Constants.primaryColor,
+          size: 50.0,
+        ),):
+        ListView.builder(
+
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          itemCount: post.ReservedList.length,
+          itemBuilder: (BuildContext context, int index) {
+
+            return GestureDetector(
+                onTap: (){
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context)=>boottom_admin( companyInfo: post.ReservedList[index],),
+                  );
+                },
+
+                child: ReservationItem_admin(post.ReservedList[index]));
+
+          },
+        ),
+
+        ));
+
+
+
+  }
+}
+
+class _ListTabStateGETXState1 extends StatelessWidget {
+
+  late String stat;
+
+  ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.only(top: 60),
+        // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
+        child:
+        Obx(()=>post.loder.value?Center(child: SpinKitThreeInOut(
+          color: Constants.primaryColor,
+          size: 50.0,
+        ),):
+        ListView.builder(
+
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          itemCount: post.ReservedList1.length,
+          itemBuilder: (BuildContext context, int index) {
+
+            return GestureDetector(
+                onTap: (){
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context)=>boottom_admin( companyInfo: post.ReservedList1[index],),
+                  );
+                },
+
+                child: ReservationItem_admin(post.ReservedList1[index]));
+
+          },
+        ),
+
+        ));
+
+
+
+  }
+}
+class _ListTabStateGETXState3 extends StatelessWidget {
+
+  late String stat;
+
+  ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.only(top: 60),
+        // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
+        child:
+        Obx(()=>post.loder.value?Center(child: SpinKitThreeInOut(
+          color: Constants.primaryColor,
+          size: 50.0,
+        ),):
+        ListView.builder(
+
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          itemCount: post.ReservedList3.length,
+          itemBuilder: (BuildContext context, int index) {
+
+            return GestureDetector(
+                onTap: (){
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context)=>boottom_admin( companyInfo: post.ReservedList3[index],),
+                  );
+                },
+
+                child: ReservationItem_admin(post.ReservedList3[index]));
+
+          },
+        ),
+
+        ));
+
+
+
+  }
+}
+class ListTabState extends StatelessWidget {
+
+
+  ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 60),
+      // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
+      child:
+      Obx(()=>post.loder.value?Center(child: SpinKitThreeInOut(
+        color: Constants.primaryColor,
+        size: 50.0,
+      ),):
+      ListView.builder(
+
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
+        itemCount: post.ReservedList.length,
+        itemBuilder: (BuildContext context, int index) {
+
+          return GestureDetector(
+              onTap: (){
+                showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (context)=>boottom_admin( companyInfo: post.ReservedList[index],),
+                );
+              },
+
+              child: ReservationItem_admin(post.ReservedList[index]));
+
+        },
+      ),
+
+    ));
+
+
+
+  }
+
+
+  List getLessons() {
+    return [
+
+    ];
+  }
+}
+

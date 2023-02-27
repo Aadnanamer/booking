@@ -53,10 +53,10 @@ class _OTPScreenState extends State<OTPScreen> {
               context: context,
               artDialogArgs: ArtDialogArgs(
                 type: ArtSweetAlertType.success,
-                title: "تم ارسال الطللب ",
-                text: "  سوف  يتم مراجعت طلبك من قبل لادمن",
+                title: " تم إنشاء حسابك بنجاح ",
+
                 confirmButtonColor: Constants.primaryColor,
-                confirmButtonText: "تــــــم ",
+                confirmButtonText: "قم بتسجل الدخول  ",
 
               )
           );

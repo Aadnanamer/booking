@@ -8,6 +8,7 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '/utils/constants.dart';
 import '/widgets/primary_button.dart';
+
 import 'package:http/http.dart'as http;
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:drop_down_list/drop_down_list.dart';
@@ -155,17 +156,7 @@ class BookingStat extends State<BookingScreen_admin>  {
       value: "TYO",
       isSelected: false,
     ),
-    SelectedListItem(
-      name: "kNewYork",
-      value: "NY",
-      isSelected: false,
-    ),
-    SelectedListItem(
-      name: "kLondon",
-      value: "LDN",
-      isSelected: false,
-    ),
-    SelectedListItem(name: "kParis", value: "LDN",),
+
 
   ];
     show(messg, bool bool) {
@@ -187,6 +178,7 @@ class BookingStat extends State<BookingScreen_admin>  {
       );
     }
   Future userLogin() async {
+   // ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
     EasyLoading.show(maskType: EasyLoadingMaskType.black,
 
 
@@ -229,6 +221,7 @@ show("تم الحجز",true);
       EasyLoading.dismiss();
       show("التاريخ المحدد غير متاح",false);
     }
+    //post.GetReserved("stat");
 
   }
   void selectionChanged(DateRangePickerSelectionChangedArgs args) {
@@ -316,7 +309,7 @@ show("تم الحجز",true);
             Navigator.of(context).pop();
           },
           child: Icon(
-            Icons.import_contacts_sharp,
+            Icons.arrow_back,
             color: Color.fromRGBO(33, 45, 82, 1),
           ),
         ),
@@ -342,7 +335,7 @@ show("تم الحجز",true);
 
                   child: SfDateRangePicker(
                     view: DateRangePickerView.month,
-                    selectionMode: DateRangePickerSelectionMode.extendableRange,
+                    selectionMode: DateRangePickerSelectionMode.range,
                     initialSelectedDate: DateTime.now(),
                     enablePastDates : false,
                     monthViewSettings: DateRangePickerMonthViewSettings(blackoutDates:date_dis),

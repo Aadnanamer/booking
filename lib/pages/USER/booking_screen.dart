@@ -198,6 +198,7 @@ class BookingStat extends State<BookingScreen>  {
       //show(response.body.toString()+response.statusCode.toString(),false);
     }
 
+    EasyLoading.dismiss();
   }
   void selectionChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
@@ -254,7 +255,7 @@ class BookingStat extends State<BookingScreen>  {
             Navigator.of(context).pop();
           },
           child: Icon(
-            Icons.import_contacts_sharp,
+            Icons.arrow_back,
             color: Color.fromRGBO(33, 45, 82, 1),
           ),
         ),
@@ -280,7 +281,7 @@ class BookingStat extends State<BookingScreen>  {
 
                   child: SfDateRangePicker(
                     view: DateRangePickerView.month,
-                    selectionMode: DateRangePickerSelectionMode.extendableRange,
+                    selectionMode: DateRangePickerSelectionMode.range,
                     initialSelectedDate: DateTime.now(),
                     monthViewSettings: DateRangePickerMonthViewSettings(blackoutDates:date_dis),
                     controller: _controller,

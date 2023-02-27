@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:booking/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +10,15 @@ import 'package:get/get.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'login.dart';
 import 'package:http/http.dart'as http;
-class Register extends StatelessWidget {
+
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
+
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
   late String username;
   late String password;
   late String name;
@@ -21,6 +31,8 @@ class Register extends StatelessWidget {
 
 
   }
+
+  final formGlobalKey = GlobalKey < FormState > ();
   Future userLogin() async {
 
 
@@ -28,7 +40,7 @@ class Register extends StatelessWidget {
     //use your local IP address instead of localhost or use Web API
 
     try {
-      String url = "https://ahla-alamirat.com/RSG/API/signin.php?name=" +
+      String url = Constants.URL+"signin.php?name=" +
           name + "&uname=" + username + "&pass=" + password;
       //  String url = "https://ahla-alamirat.com/RSG/API/signin.php?name=adnan&uname=ad&pass=;
       // Showing LinearProgressIndicator.
@@ -65,15 +77,8 @@ class Register extends StatelessWidget {
 
 
   }
-
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
-    final formGlobalKey = GlobalKey < FormState > ();
-
-
-
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -351,17 +356,20 @@ class Register extends StatelessWidget {
                 PrimaryButton(
                   text: "تسجيل",
                   onPressed: () async {
-                    FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-                    NotificationSettings settings = await messaging.requestPermission(
-                      alert: true,
-                      announcement: false,
-                      badge: true,
-                      carPlay: false,
-                      criticalAlert: false,
-                      provisional: false,
-                      sound: true,
-                    );
+                    if (Platform.isIOS) {
+                      FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+                      NotificationSettings settings = await messaging
+                          .requestPermission(
+                        alert: true,
+                        announcement: false,
+                        badge: true,
+                        carPlay: false,
+                        criticalAlert: false,
+                        provisional: false,
+                        sound: true,
+                      );
 
                     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
                       if (formGlobalKey.currentState!.validate()) {
@@ -385,12 +393,25 @@ class Register extends StatelessWidget {
                       if (formGlobalKey.currentState!.validate()) {
                         formGlobalKey.currentState!.save();
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => OTPScreen(phone,name,password,username)));
+                            builder: (context) =>
+                                OTPScreen(phone, name, password, username)));
                         // use the email provided here
                       }
 
                       print('User declined or has not accepted permission');
                     }
+                    }
+                    else
+                      {
+                        if (formGlobalKey.currentState!.validate()) {
+                          formGlobalKey.currentState!.save();
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  OTPScreen(phone, name, password, username)));
+                          // use the email provided here
+                        }
+
+                      }
 
 
 
@@ -453,3 +474,5 @@ class Register extends StatelessWidget {
     );
   }
 }
+
+

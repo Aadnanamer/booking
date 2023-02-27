@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "994453492967",
+    "project_id": "alrajhi-9f60f",
+    "storage_bucket": "alrajhi-9f60f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994453492967:android:7a4b6f5e6851bb9b903e42",
+        "android_client_info": {
+          "package_name": "com.alrajhi.bookin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994453492967-3bhvq7tdsh2cc7t5oeu40lfkf2g31ski.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alrajhi.bookin",
+            "certificate_hash": "3313d13a609a1dfe703b80375be2987cf885b166"
+          }
+        },
+        {
+          "client_id": "994453492967-8t69linhqefj0qehcahbuqe9asc70pk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVqlL4x6UXHKU3dgbj_Ltcuej6ARPNrfk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994453492967-8t69linhqefj0qehcahbuqe9asc70pk5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "994453492967-c08670eei5ho0vcnv8870eemsaoa180f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.adnan"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994453492967:android:9296a4737bdc10b4903e42",
+        "android_client_info": {
+          "package_name": "com.alrajhi.booking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994453492967-29on58f2nimln3mifbtspcabvajompti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alrajhi.booking",
+            "certificate_hash": "3313d13a609a1dfe703b80375be2987cf885b166"
+          }
+        },
+        {
+          "client_id": "994453492967-8t69linhqefj0qehcahbuqe9asc70pk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVqlL4x6UXHKU3dgbj_Ltcuej6ARPNrfk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994453492967-8t69linhqefj0qehcahbuqe9asc70pk5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "994453492967-c08670eei5ho0vcnv8870eemsaoa180f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.adnan"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
