@@ -59,62 +59,9 @@ description:singleUser['DATE_FROM']+' :: '+singleUser['DATE_TO'] ,
   setState(() {
     _eventList=_todaysEvents;
   });
-  //Navigator.pop(context);
+
 }
-  /*
-    //Check Login Status
-    if (msg['loginStatus'] == true) {
-      show("yes");
-      /*
-      setState(() {
-    //   DateTime DATE_FROM = DateTime.parse(msg['userInfo']['DATE_FROM']);
-      //  DateTime DATE_TO = DateTime.parse(msg['userInfo']['DATE_TO']);
 
-
-        _eventList = [
-          NeatCleanCalendarEvent('   amer A',
-              description: '  adnan',
-              startTime: DateTime(DateTime
-                  .now()
-                  .year, DateTime
-                  .now()
-                  .month,
-                  DateTime
-                      .now()
-                      .day, 10, 0),
-              endTime: DateTime(DateTime
-                  .now()
-                  .year, DateTime
-                  .now()
-                  .month,
-                  DateTime
-                      .now()
-                      .day, 10, 0),
-              color: Colors.orange,
-              isMultiDay: true),
-
-
-        ];
-      });
-
-
-       */
-      // Navigate to Home Screen
-
-    } else {
-      show("Message");
-    }
-  } else {
-    //hide progress indicator
-    show("Error during connecting to Server");
-
-    //Show Error Message Dialog
-    //  showMessage("Error during connecting to Server.");
-
-
-
-
-   */
   }
 
 
@@ -125,15 +72,6 @@ description:singleUser['DATE_FROM']+' :: '+singleUser['DATE_TO'] ,
     }
   }
 
-  List<NeatCleanCalendarEvent> _todaysEvents = [
-    NeatCleanCalendarEvent('Event A',
-        startTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day, 10, 0),
-        endTime: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime.now().day, 12, 0),
-        description: 'A special event',
-        color: Colors.blue[700]),
-  ];
 
   late  List<NeatCleanCalendarEvent> _eventList = [
 
