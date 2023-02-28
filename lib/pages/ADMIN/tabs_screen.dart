@@ -1,3 +1,4 @@
+import '../../Controler/ReservedControllerAdmin.dart';
 import '../../utils/constants.dart';
 import '../Profil.dart';
 import 'ListResvition.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../dashboard.dart';
 import '../CalendarScreen.dart';
 import 'ListUser.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
 import 'dart:convert';
 class TabScreen extends StatefulWidget {
@@ -17,7 +19,7 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> {
   int _page = 0;
-
+  ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
   late String user="",res="";
   Future get_bar() async {
 
@@ -85,7 +87,7 @@ setState(() {
       items: <Widget>[
         Icon(Icons.home, size: 26, color: Color(0xFF354259)),
         Badge(
-          label: Text(res),
+          label: Text(post.counter.value.toString()),
           child:  Icon(Icons.calendar_today, size: 26, color: Color(0xff354259)),
         ),
         Icon(Icons.calendar_today, size: 26, color: Color(0xff354259)),
