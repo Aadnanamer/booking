@@ -77,7 +77,7 @@ class _boottom_userState extends State<boottom_admin> {
       if (msg['Status'] == true) {
 
 
-        show("تم الغ الحجز");
+        show("تم الغاء الحجز");
 
 
         // Navigate to Home Screen
@@ -94,6 +94,49 @@ class _boottom_userState extends State<boottom_admin> {
       show("فشل ");
     }
 post.GetReserved("");
+  }
+  Future Delete() async {
+    ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
+    //Login API URL
+    //use your local IP address instead of localhost or use Web API
+
+    String url = Constants.URL+"Delete.php?id="+companyInfo.ID +"&user="+companyInfo.USERID! ;
+
+    // Showing LinearProgressIndicator.
+
+
+    // Getting username and password from Controller
+
+
+    //Starting Web API Call.
+    var response = await http.get(
+        Uri.parse(url));
+    if (response.statusCode == 200 ||response.statusCode == 500) {
+      //Server response into variable
+
+      var msg = jsonDecode(response.body);
+
+      //Check Login Status
+      if (msg['Status'] == true) {
+
+
+        show("تم الغاء الحجز");
+
+
+        // Navigate to Home Screen
+        //  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(uname:msg['userInfo']['NAME'])));
+      } else {
+
+        //Show Error Message Dialog
+
+        show("فشل ");
+
+      }
+    } else {
+
+      show("فشل ");
+    }
+    post.GetReserved("");
   }
   Future ACCEPT() async {
     ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
@@ -261,7 +304,7 @@ post.GetReserved("");
 
             Visibility(
 
-              visible:   companyInfo.STATE== 'موكد '  ?  false: true,
+              visible:   companyInfo.STATE== 'غير موكد' ?  true: false,
               child:  Padding(
                 padding: const EdgeInsets.only(left: 20,right: 20,),
                 child: Container(
@@ -290,14 +333,7 @@ post.GetReserved("");
 
                       if (response.isTapConfirmButton) {
                         ACCEPT();
-                        /*
-    ArtSweetAlert.show(
-    context: context,
-    artDialogArgs: ArtDialogArgs(
-    type: ArtSweetAlertType.success,
-    title: "Deleted!"));
 
-       */
                         return;
                       }
                     },
@@ -316,9 +352,61 @@ post.GetReserved("");
                 ),
               ),
             ),
-
             SizedBox(height: 30),
-            Padding(
+            Visibility(
+
+              visible:   companyInfo.STATE== 'ملغيه'  ?  true: false,
+              child:  Padding(
+                padding: const EdgeInsets.only(left: 20,right: 20,),
+                child: Container(
+
+                  width: double.infinity,
+                  height: 40,
+
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      ArtDialogResponse response = await ArtSweetAlert.show(
+                          barrierDismissible: false,
+                          context: context,
+
+                          artDialogArgs: ArtDialogArgs(
+                              denyButtonText: "تاكيد",
+                              title: "هل  تريد تاكيد الحجز ?",
+                              confirmButtonText: "نعم , تاكيد ",
+                              confirmButtonColor :  Constants.primaryColor,
+                              type: ArtSweetAlertType.warning
+                          )
+                      );
+
+                      if (response == null) {
+                        return;
+                      }
+
+                      if (response.isTapConfirmButton) {
+                        Delete();
+
+                        return;
+                      }
+                    },
+
+                    //  Navigator.pop(context);
+
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        primary: Theme.of(context).primaryColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)
+                        )
+                    ),
+                    child: Text('حـــذف '),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
+            Visibility(
+              visible:   companyInfo.STATE== 'ملغيه'  ?  false: true,
+              child:Padding(
               padding: const EdgeInsets.only(left: 20,right: 20,),
               child: Container(
 
@@ -346,14 +434,7 @@ post.GetReserved("");
 
                     if (response.isTapConfirmButton) {
                       Cancel();
-                      /*
-    ArtSweetAlert.show(
-    context: context,
-    artDialogArgs: ArtDialogArgs(
-    type: ArtSweetAlertType.success,
-    title: "Deleted!"));
 
-       */
                       return;
                     }
                   },
@@ -370,7 +451,7 @@ post.GetReserved("");
                   child: Text('الـغـــاء'),
                 ),
               ),
-            ),
+            ), ),
 
           ],
         ),

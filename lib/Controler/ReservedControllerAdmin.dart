@@ -9,7 +9,7 @@ class ReservedControllerAdmin extends GetxController
   RxList<Reserved> ReservedList=RxList() ;
   RxList<Reserved> ReservedList1=RxList() ;
   RxList<Reserved> ReservedList3=RxList() ;
-
+var counter=0.obs;
   var loder=true.obs;
   // final userdata = GetStorage();
   String? stat=" ";
@@ -38,7 +38,7 @@ class ReservedControllerAdmin extends GetxController
   Future<void> GetReserved(stat )
   async {
     loder.value=true;
-
+counter.value=0;
 
     String url = Constants.URL+"ReservedAdmin.php?ID="+stat;
 
@@ -56,22 +56,10 @@ class ReservedControllerAdmin extends GetxController
 
           var tmep;
           for (var singleUser in msg) {
-           /*  tmep= Reserved(
-                USER: singleUser['USERNAME'],
-                STATE: (singleUser['STATE'] == '1' ? 'موكد ' : 'غير موكد'),
-                DATE_FROM: singleUser['DATE_FROM'],
-                DATE_TO: singleUser['DATE_TO'],
-                ID_APARTMENT: singleUser['NAME'],
-                ID: singleUser['ID'],
-                USERID: '',
-           );
 
-            */
-           //  ReservedList.add(tmep);
-            // ReservedList1.add(tmep);
-             //ReservedList3.add(tmep);
 
            if(singleUser['STATE']=='0') {
+             counter.value++;
              tmep= Reserved(
                USER: singleUser['USERNAME'],
                STATE: ('غير موكد'),
@@ -86,7 +74,8 @@ class ReservedControllerAdmin extends GetxController
            else if(singleUser['STATE']=='1') {
              tmep= Reserved(
                USER: singleUser['USERNAME'],
-               STATE: ('  موكد'),
+              STATE: ('  موكد'),
+             //  STATE:singleUser['STATE'],
                DATE_FROM: singleUser['DATE_FROM'],
                DATE_TO: singleUser['DATE_TO'],
                ID_APARTMENT: singleUser['NAME'],
@@ -98,7 +87,7 @@ class ReservedControllerAdmin extends GetxController
              if(singleUser['STATE']=='3') {
                tmep= Reserved(
                  USER: singleUser['USERNAME'],
-                 STATE: ('  ملفيه'),
+                 STATE: ('ملغيه'),
                  DATE_FROM: singleUser['DATE_FROM'],
                  DATE_TO: singleUser['DATE_TO'],
                  ID_APARTMENT: singleUser['NAME'],

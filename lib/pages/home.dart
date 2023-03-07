@@ -62,12 +62,12 @@ catch(ee)
           children: [
             HomePageTemplate(
               activePage: currentPage,
-              title: "Let's Find Peace with Comfort",
+              title: "Let's Start  Together",
               imagePath: "assets/images/page1.png",
             ),
             HomePageTemplate(
               activePage: currentPage,
-              title: "Let's Find Peace with Comfort",
+              title: "Let's Start  Together",
               imagePath: "assets/images/page2.png",
             ),
 

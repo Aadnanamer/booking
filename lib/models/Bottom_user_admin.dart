@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Controler/UserController.dart';
 import '../utils/constants.dart';
-
+import 'package:get/get.dart';
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:http/http.dart'as http;
 
@@ -42,19 +43,30 @@ class _boottom_userState extends State<boottom_user_admin> {
     }
     return _savedData;
   }
-  show(messg) {
+  show(messg, bool bool) {
+
+
+    var type=ArtSweetAlertType.success;
+    if(bool)
+    {type=ArtSweetAlertType.success;
+    }
+    else
+    {type=ArtSweetAlertType.danger;
+    }
     ArtSweetAlert.show(
         context: context,
         artDialogArgs: ArtDialogArgs(
-            type: ArtSweetAlertType.success,
-            confirmButtonText: "تــم",
-             confirmButtonColor :  Constants.primaryColor,
-            title: messg
+          type:type,
+          text: messg,
+          confirmButtonColor: Constants.primaryColor,
+          confirmButtonText: "تـــم",
         )
     );
+
+    Get.back();
   }
   Future Cancel() async {
-
+    UserController post=Get.put(UserController());
     //Login API URL
     //use your local IP address instead of localhost or use Web API
     String url = Constants.URL+"ACCEPTUSER.php?id="+companyInfo.ID +"&type=Delete";
@@ -77,8 +89,8 @@ class _boottom_userState extends State<boottom_user_admin> {
       if (msg['Status'] == true) {
 
 
-        show("تم الحـذف  ");
-        show("تم الحـذف  ");
+        show("تم الحـذف  ",true);
+
 
 
         // Navigate to Home Screen
@@ -87,13 +99,15 @@ class _boottom_userState extends State<boottom_user_admin> {
 
         //Show Error Message Dialog
 
-        show("فشل ");
+        show("فشل ",false);
 
       }
     } else {
 
-      show("فشل ");
+      show("فشل ",false);
     }
+
+ post.GetReserved();
 
   }
   Future ACCEPT() async {
@@ -120,22 +134,17 @@ class _boottom_userState extends State<boottom_user_admin> {
       //Check Login Status
       if (msg['Status'] == true) {
 
+        show("تم    تاكيد  ",true);
 
-        show("تم    تاكيد  ");
-
-
-        // Navigate to Home Screen
-        //  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(uname:msg['userInfo']['NAME'])));
       } else {
 
-        //Show Error Message Dialog
 
-        show("فشل ");
+        show("فشل ",false);
 
       }
     } else {
 
-      show("فشل ");
+      show("فشل ",false);
     }
 
   }
@@ -250,63 +259,7 @@ class _boottom_userState extends State<boottom_user_admin> {
             // ...spread operator
 
 
-            Visibility(
 
-              visible:   companyInfo.STAT== 'موكد '  ?  false: true,
-              child:  Padding(
-                padding: const EdgeInsets.only(left: 20,right: 20,),
-                child: Container(
-
-                  width: double.infinity,
-                  height: 40,
-
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      ArtDialogResponse response = await ArtSweetAlert.show(
-                          barrierDismissible: false,
-                          context: context,
-
-                          artDialogArgs: ArtDialogArgs(
-                              denyButtonText: "تاكيد",
-                              title: "هل  تريد تاكيد الحساب ?",
-                              confirmButtonText: "نعم , تاكيد ",
-                              confirmButtonColor :  Constants.primaryColor,
-                              type: ArtSweetAlertType.warning
-                          )
-                      );
-
-                      if (response == null) {
-                        return;
-                      }
-
-                      if (response.isTapConfirmButton) {
-                        ACCEPT();
-                        /*
-    ArtSweetAlert.show(
-    context: context,
-    artDialogArgs: ArtDialogArgs(
-    type: ArtSweetAlertType.success,
-    title: "Deleted!"));
-
-       */
-                        return;
-                      }
-                    },
-
-                    //  Navigator.pop(context);
-
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        primary: Theme.of(context).primaryColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)
-                        )
-                    ),
-                    child: Text('تاكيد'),
-                  ),
-                ),
-              ),
-            ),
 
             SizedBox(height: 30),
             Padding(
@@ -337,15 +290,8 @@ class _boottom_userState extends State<boottom_user_admin> {
 
                     if (response.isTapConfirmButton) {
                       Cancel();
-                      /*
-    ArtSweetAlert.show(
-    context: context,
-    artDialogArgs: ArtDialogArgs(
-    type: ArtSweetAlertType.success,
-    title: "Deleted!"));
 
-       */
-                      return;
+                       return;
                     }
                   },
 
@@ -358,7 +304,7 @@ class _boottom_userState extends State<boottom_user_admin> {
                           borderRadius: BorderRadius.circular(20)
                       )
                   ),
-                  child: Text('الـغـــاء'),
+                  child: Text(' حذف '),
                 ),
               ),
             ),

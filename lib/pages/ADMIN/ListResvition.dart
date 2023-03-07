@@ -145,7 +145,15 @@ print("errorr");
           _ListTabStateGETXState1( ),
           _ListTabStateGETXState3( ),
         ]),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              ReservedControllerAdmin post=Get.put(ReservedControllerAdmin());
+              post.GetReserved("stat");
+            },
 
+            child:   Icon(Icons.refresh),
+            backgroundColor: Constants.primaryColor,
+          ),
     ));
   }
 }

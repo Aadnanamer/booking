@@ -41,7 +41,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   if (response.statusCode == 200) {
     var msg = json.decode(response.body);
 {
-  List<Reserved> users = [];
+
   List<NeatCleanCalendarEvent> _todaysEvents = [
 
   ];
@@ -51,9 +51,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
         startTime:  DateTime.parse(singleUser['DATE_FROM']),
         endTime:  DateTime.parse(singleUser['DATE_TO']),
 description:singleUser['DATE_FROM']+' :: '+singleUser['DATE_TO'] ,
-        location:" 1  c",
-        multiDaySegement:["  2الثامة","الثامة"],
-
         color: Colors.blue[700]));
 }
   setState(() {
@@ -91,37 +88,35 @@ description:singleUser['DATE_FROM']+' :: '+singleUser['DATE_TO'] ,
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Calendar(
-          startOnMonday: true,
-          weekDays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
-          eventsList: _eventList,
-          isExpandable: true,
-          eventDoneColor: Colors.green,
-          selectedColor: Colors.pink,
-          selectedTodayColor: Colors.green,
-          todayColor: Colors.blue,
-          eventColor: null,
-          locale: 'de_DE',
-          todayButtonText: 'Heute',
-          allDayEventText: ' ',
-          multiDayEndText: ' ',
-          isExpanded: true,
-          expandableDateFormat: 'EEEE, dd. MMMM yyyy',
-          datePickerType: DatePickerType.date,
-          dayOfWeekStyle: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w800, fontSize: 11),
+        child:Padding(
+          padding: EdgeInsets.all(16),
+          child: Calendar(
+            startOnMonday: true,
+            eventsList: _eventList,
+            isExpandable: true,
+            eventDoneColor: Colors.green,
+            selectedColor: Colors.pink,
+            selectedTodayColor: Colors.green,
+            todayColor: Colors.blue,
+            eventColor: null,
+            locale: 'ar',
+
+            isExpanded: true,
+            expandableDateFormat: 'EEEE, dd. MMMM yyyy',
+            datePickerType: DatePickerType.date,
+            dayOfWeekStyle: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w800, fontSize: 11),
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {userLogin();},
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.green,
-      ),
+
     );
   }
 
   void _handleNewDate(date) {
-    print('Date selected: $date');
+
+  var ele=  _eventList.contains("$date");
+    print('Date selected: $ele');
   }
   void add()
   {
