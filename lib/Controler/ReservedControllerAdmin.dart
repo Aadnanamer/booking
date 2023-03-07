@@ -74,7 +74,8 @@ counter.value=0;
            else if(singleUser['STATE']=='1') {
              tmep= Reserved(
                USER: singleUser['USERNAME'],
-               STATE: ('  موكد'),
+              STATE: ('  موكد'),
+             //  STATE:singleUser['STATE'],
                DATE_FROM: singleUser['DATE_FROM'],
                DATE_TO: singleUser['DATE_TO'],
                ID_APARTMENT: singleUser['NAME'],
@@ -86,7 +87,7 @@ counter.value=0;
              if(singleUser['STATE']=='3') {
                tmep= Reserved(
                  USER: singleUser['USERNAME'],
-                 STATE: ('  ملفيه'),
+                 STATE: ('ملغيه'),
                  DATE_FROM: singleUser['DATE_FROM'],
                  DATE_TO: singleUser['DATE_TO'],
                  ID_APARTMENT: singleUser['NAME'],

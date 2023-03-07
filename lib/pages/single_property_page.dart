@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/utils/constants.dart';
-import '/utils/helper.dart';
 import '/widgets/property_features.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 class SinglePropertyPage extends StatelessWidget {

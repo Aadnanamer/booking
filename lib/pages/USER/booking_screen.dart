@@ -7,13 +7,12 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:get/get.dart';
-import '../dashboard.dart';
+
 import '/utils/constants.dart';
 import '/widgets/primary_button.dart';
 import 'package:http/http.dart'as http;
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:drop_down_list/drop_down_list.dart';
-import 'package:drop_down_list/model/selected_list_item.dart';
+
 class User {
 
   final String NAME;
@@ -121,20 +120,22 @@ class BookingStat extends State<BookingScreen>  {
 
   show(messg, bool bool) async {
     var type=ArtSweetAlertType.success;
+   var conf= "تـــم";
     if(bool)
     {type=ArtSweetAlertType.success;
     }
     else
-    {type=ArtSweetAlertType.danger;
+    {type=ArtSweetAlertType.warning;
+    conf="  المحاولة مجددا";
     }
     ArtDialogResponse response = await ArtSweetAlert.show(
         context: context,
         barrierDismissible: false,
         artDialogArgs: ArtDialogArgs(
             type:type,
-            text: messg,
+            title: messg,
           confirmButtonColor: Constants.primaryColor,
-          confirmButtonText: "تـــم",
+          confirmButtonText:conf,
         )
     );
 
@@ -145,7 +146,13 @@ class BookingStat extends State<BookingScreen>  {
     }
 
     if (response.isTapConfirmButton) {
-      Get.back();
+      if(bool) {
+        Get.back();
+      }
+      else
+        {
+          return;
+        }
       return;
     }
     Get.back();
