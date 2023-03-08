@@ -63,6 +63,7 @@ void main() async {
       var title=notification.title.toString();
       var body=notification.body.toString();
       print('Message also contained a notification: ${notification}');
+  /*
       Get.defaultDialog(
 
           title: title,
@@ -72,8 +73,10 @@ void main() async {
           middleTextStyle: TextStyle(color: Colors.white),
           radius: 30
 
-      );
+      );*/
     }
+
+
   });
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
