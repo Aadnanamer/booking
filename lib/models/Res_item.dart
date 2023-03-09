@@ -54,9 +54,71 @@ class ReservationItem extends StatelessWidget {
             ],
           ),
           SizedBox(height: 15),
-          Text(ReservedInfo.DATE_FROM+ " ............ "+ReservedInfo.DATE_TO, style:
-          TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "خروج",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
+
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Text(
+                    ReservedInfo.DATE_FROM , style:
+                  TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
+
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+
+                ],
+              ),
+              Container(
+                width: 45.0,
+                height: 45.0,
+                decoration: BoxDecoration(
+                  color: Constants.primaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+
+                  Icons.arrow_forward_rounded,
+                  color: Colors.white,
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "دخول ",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Text(
+                    ReservedInfo.DATE_TO, style:
+                  TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
+
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+
+                ],
+              )
+            ],
           ),
 
           SizedBox(height: 20),
