@@ -186,7 +186,7 @@ class _ListTabState extends State<ListTab> {
     this.Stat=stat;
   }
   late List ReservedList,ReservedList1,ReservedList2;
-
+/*
   Future ReservedShow(stat) async {
 
 
@@ -248,13 +248,15 @@ class _ListTabState extends State<ListTab> {
       print("errorr");
     }
   }
+
+ */
   @override
   void initState() {
 
     ReservedList = getLessons();
     ReservedList1 = getLessons();
     ReservedList2 = getLessons();
-    ReservedShow(Stat);
+  //  ReservedShow(Stat);
 
     super.initState();
   }

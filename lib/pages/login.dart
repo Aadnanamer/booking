@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:booking/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,8 +59,6 @@ class _LOGINState extends State<LOGIN> with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
-    final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-    String? _savedData=" ";
 
     Future<void> Keep(Key,Value) async {
 
@@ -152,7 +151,6 @@ class _LOGINState extends State<LOGIN> with SingleTickerProviderStateMixin{
       }
       EasyLoading.dismiss();
     }
-
 
 
     return Scaffold(
@@ -350,17 +348,31 @@ class _LOGINState extends State<LOGIN> with SingleTickerProviderStateMixin{
       ],)),
                   PrimaryButton(
                     text: "تسجيل",
-                    onPressed: () {
-                  //
+                    onPressed: () async {
+                      if (Platform.isIOS) {
+                        FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+                        NotificationSettings settings = await messaging
+                            .requestPermission(
+                          alert: true,
+                          announcement: false,
+                          badge: true,
+                          carPlay: false,
+                          criticalAlert: false,
+                          provisional: false,
+                          sound: true,
+                        );
+
+
+                          print('User granted provisional permission');
+                        }
                       if (formGlobalKey.currentState!.validate()) {
                         formGlobalKey.currentState!.save();
                      userLogin();
-                        // use the email provided here
+
                       }
 
 
-                      //       fet();
-//Get.to(Dashboard());
                     },
                   ),
                   Center(

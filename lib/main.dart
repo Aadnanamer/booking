@@ -1,20 +1,13 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'pages/SplashScreen.dart';
 import 'utils/constants.dart';
 import 'pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:get/get.dart';
-/*
-void main() {
-  runApp(MyApp());
-}
 
- */
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
@@ -55,25 +48,12 @@ void main() async {
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     print('Got a message whilst in the foreground!');
     print('Message data: ${message.data}');
-    late String m= message.data.toString();
-
 
     final notification = message.notification;
     if (notification != null) {
-      var title=notification.title.toString();
-      var body=notification.body.toString();
+
       print('Message also contained a notification: ${notification}');
-  /*
-      Get.defaultDialog(
 
-          title: title,
-          middleText: body,
-          backgroundColor: Constants.primaryColor,
-          titleStyle: TextStyle(color: Colors.white),
-          middleTextStyle: TextStyle(color: Colors.white),
-          radius: 30
-
-      );*/
     }
 
 

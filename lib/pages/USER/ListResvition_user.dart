@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../Controler/ReservedController.dart';
 import '../../Controler/ReservedControllerAdmin.dart';
+import '../../Controler/UserController.dart';
 import '../../models/Res_details.dart';
 import '/models/Res_item.dart';
 import 'package:get/get.dart';
@@ -91,30 +92,10 @@ class _ListPageState extends State<ListPage> {
   ReservedController post=Get.put(ReservedController());
   @override
   void initState() {
-    print("initState");
-   // ReservedController post=Get.put(ReservedController());
-    //  ReservedList = getLessons();
-    // lodeSaveData();
-    /*
-    EasyLoading.instance ..displayDuration = const Duration(milliseconds: 2000)
-      ..loadingStyle = EasyLoadingStyle.custom
-      ..indicatorSize = 60
-      ..textColor = Colors.black
-      ..radius = 20
-      ..backgroundColor = Colors.transparent
-      ..maskColor = Colors.white ..indicatorColor = Constants.primaryColor
-      ..userInteractions = false ..dismissOnTap = false
-      ..boxShadow = <BoxShadow>[]
-      ..indicatorType = EasyLoadingIndicatorType.threeBounce;
-    EasyLoading.show(maskType: EasyLoadingMaskType.black,
 
 
+    post.GetReserved();
 
-
-    );
-    */
-    ReservedControllerAdmin reservedController=Get.put(ReservedControllerAdmin());
-    reservedController.GetReserved("");
     super.initState();
   }
 
