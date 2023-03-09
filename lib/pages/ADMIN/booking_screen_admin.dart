@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -431,10 +432,14 @@ show("تم الحجز",true);
                             width: 45.0,
                             height: 45.0,
                             decoration: BoxDecoration(
-
+                              color: Constants.primaryColor,
                               shape: BoxShape.circle,
                             ),
+                            child: Icon(
 
+                              Icons.arrow_forward_rounded,
+                              color: Colors.white,
+                            ),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
